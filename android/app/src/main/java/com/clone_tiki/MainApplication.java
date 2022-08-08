@@ -4,24 +4,16 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
-// import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.brentvatne.react.ReactVideoPackage;
-
-import androidx.multidex.MultiDexApplication;
-import io.invertase.firebase.firestore.ReactNativeFirebaseFirestorePackage;
-import com.reactnativecommunity.viewpager.RNCViewPagerPackage;
-import org.reactnative.maskedview.RNCMaskedViewPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
+import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
-import com.oblador.vectoricons.VectorIconsPackage;
+import com.clone_tiki.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-
-
-public class MainApplication extends MultiDexApplication implements ReactApplication {
+public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
       new ReactNativeHost(this) {
@@ -35,13 +27,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
           @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
-
-          // packages.add(new MainReactPackage());
-          // packages.add(new ReactNativeFirebaseFirestorePackage());
-          // return Arrays.asList(
-          //   new MainReactPackage(),
-          //   new ReactNativeFirebaseFirestorePackage(),
-            
+          // packages.add(new MyReactNativePackage());
           return packages;
         }
 
@@ -51,14 +37,23 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
         }
       };
 
+  private final ReactNativeHost mNewArchitectureNativeHost =
+      new MainApplicationReactNativeHost(this);
+
   @Override
   public ReactNativeHost getReactNativeHost() {
-    return mReactNativeHost;
+    if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
+      return mNewArchitectureNativeHost;
+    } else {
+      return mReactNativeHost;
+    }
   }
 
   @Override
   public void onCreate() {
     super.onCreate();
+    // If you opted-in for the New Architecture, we enable the TurboModule system
+    ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
