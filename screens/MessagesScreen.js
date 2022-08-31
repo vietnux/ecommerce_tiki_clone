@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   StyleSheet,
@@ -20,9 +20,9 @@ import MessageHeader from '../components/MessageHeader';
 import metrics from '../constants/metrics';
 import colors from '../constants/Colors';
 
-const MessagesScreen = ({route}) => {
+const MessagesScreen = ({ route }) => {
   const [textList, setTextLists] = useState([]);
-  const {thread} = route.params;
+  const { thread } = route.params;
   const userAuth = auth().currentUser.toJSON();
   const [users, setUser] = useState([]);
   const [avtuser, setAvtUser] = useState('');
@@ -67,7 +67,7 @@ const MessagesScreen = ({route}) => {
             createdAt: new Date().getTime(),
           },
         },
-        {merge: true},
+        { merge: true },
       );
   }
 
@@ -79,11 +79,11 @@ const MessagesScreen = ({route}) => {
       .orderBy('createAt', 'desc')
       .onSnapshot((querySnapshot) => {
         const texts = [];
-        querySnapshot.forEach((documentSnapshot) => {
-          texts.push({
-            ...documentSnapshot.data(),
-          });
-        });
+        // querySnapshot.forEach((documentSnapshot) => {
+        //   texts.push({
+        //     ...documentSnapshot.data(),
+        //   });
+        // });
         setTextLists(texts);
       });
 
@@ -91,12 +91,12 @@ const MessagesScreen = ({route}) => {
       .collection('users')
       .onSnapshot((querySnapshot) => {
         const user = [];
-        querySnapshot.forEach((documentSnapshot) => {
-          user.push({
-            ...documentSnapshot.data(),
-            key: documentSnapshot.id,
-          });
-        });
+        // querySnapshot.forEach((documentSnapshot) => {
+        //   user.push({
+        //     ...documentSnapshot.data(),
+        //     key: documentSnapshot.id,
+        //   });
+        // });
         setUser(user);
       });
 
@@ -166,7 +166,7 @@ const MessagesScreen = ({route}) => {
             name="ios-send-sharp"
             size={metrics.iconLarge}
             color={colors.blue}
-            style={{marginBottom: 5, marginRight: 5}}
+            style={{ marginBottom: 5, marginRight: 5 }}
           />
         </View>
       </Send>
@@ -176,12 +176,12 @@ const MessagesScreen = ({route}) => {
   const renderInputToolbar = (props) => {
     return (
       <InputToolbar {...props}>
-        <TouchableOpacity style={{width: 50}}>
+        <TouchableOpacity style={{ width: 50 }}>
           <Ionicons
             name="ios-send-sharp"
             size={metrics.iconLarge}
             color={colors.blue}
-            style={{marginBottom: 5, marginRight: 5}}
+            style={{ marginBottom: 5, marginRight: 5 }}
           />
         </TouchableOpacity>
       </InputToolbar>
@@ -189,7 +189,7 @@ const MessagesScreen = ({route}) => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <MessageHeader />
       <GiftedChat
         messages={textList}

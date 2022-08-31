@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react';
+/* eslint-disable prettier/prettier */
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -12,9 +13,9 @@ import colors from '../../constants/Colors';
 // Authenication
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import {useNavigation} from '@react-navigation/native';
-import {GoogleSignin} from '@react-native-community/google-signin';
-import {LoginManager, AccessToken} from 'react-native-fbsdk';
+import { useNavigation } from '@react-navigation/native';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+// import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 import AppTextInput from '../AppTextInput';
 import AppText from '../AppText';
 
@@ -24,7 +25,7 @@ GoogleSignin.configure({
 });
 async function onGoogleButtonPress() {
   // Get the users ID token
-  const {idToken} = await GoogleSignin.signIn();
+  const { idToken } = await GoogleSignin.signIn();
 
   // Create a Google credential with the token
   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
@@ -33,32 +34,33 @@ async function onGoogleButtonPress() {
   return auth().signInWithCredential(googleCredential);
 }
 
-async function onFacebookButtonPress() {
-  // Attempt login with permissions
-  const result = await LoginManager.logInWithPermissions([
-    'public_profile',
-    'email',
-  ]);
+// async function onFacebookButtonPress() {
+//   // Attempt login with permissions
+//   const result = await LoginManager.logInWithPermissions([
+//     'public_profile',
+//     'email',
+//   ]);
 
-  if (result.isCancelled) {
-    throw 'User cancelled the login process';
-  }
+//   if (result.isCancelled) {
+//     throw 'User cancelled the login process';
+//   }
 
-  // Once signed in, get the users AccesToken
-  const data = await AccessToken.getCurrentAccessToken();
+//   // Once signed in, get the users AccesToken
+//   const data = await AccessToken.getCurrentAccessToken();
 
-  if (!data) {
-    throw 'Something went wrong obtaining access token';
-  }
+//   if (!data) {
+//     throw 'Something went wrong obtaining access token';
+//   }
 
-  // Create a Firebase credential with the AccessToken
-  const facebookCredential = auth.FacebookAuthProvider.credential(
-    data.accessToken,
-  );
+//   // Create a Firebase credential with the AccessToken
+//   // eslint-disable-next-line prettier/prettier
+//   const facebookCredential = auth.FacebookAuthProvider.credential(
+//     data.accessToken,
+//   );
 
-  // Sign-in the user with the credential
-  return auth().signInWithCredential(facebookCredential);
-}
+//   // Sign-in the user with the credential
+//   return auth().signInWithCredential(facebookCredential);
+// }
 
 const Login = () => {
   const [users, setUsers] = useState([]);
@@ -66,17 +68,17 @@ const Login = () => {
     const subcriber = firestore()
       .collection('users')
       .onSnapshot((querySnapshot) => {
-        const users = [];
-        querySnapshot.forEach((documentSnapshot) => {
-          users.push({
-            ...documentSnapshot.data(),
-            id: documentSnapshot.id,
-          });
-        });
+        const user = [];
+        // querySnapshot.forEach((documentSnapshot) => {
+        //   user.push({
+        //     ...documentSnapshot.data(),
+        //     id: documentSnapshot.id,
+        //   });
+        // });
         setUsers(users);
       });
     return () => subcriber();
-  }, []);
+  }, [users]);
 
   const navigation = useNavigation();
   const loginApp = () => {
@@ -85,7 +87,6 @@ const Login = () => {
       .then(() => {
         navigation.navigate('PersonalScreen');
         const user = users.find((user) => user.email === email);
-        zzzz;
       })
       .catch((error) => {
         if (error.code === 'auth/email-already-in-use') {
@@ -105,7 +106,7 @@ const Login = () => {
   return (
     <ScrollView style={styles.container}>
       <AppTextInput
-        style={[styles.email, {borderBottomColor: color}]}
+        style={[styles.email, { borderBottomColor: color }]}
         i18nKey={'emailOrPhone'}
         placeholderTextColor={color}
         onFocus={() => setColor(colors.blue)}
@@ -114,7 +115,7 @@ const Login = () => {
         onChangeText={(email) => setEmail(email)}
       />
       <AppTextInput
-        style={[styles.email, {borderBottomColor: color2}]}
+        style={[styles.email, { borderBottomColor: color2 }]}
         i18nKey={'password'}
         placeholderTextColor={color2}
         onFocus={() => setColor2(colors.blue)}
@@ -127,12 +128,12 @@ const Login = () => {
         activeOpacity={0.9}
         style={styles.LoginButton}
         onPress={loginApp}>
-        <Text style={{color: 'white', fontSize: 17}}>
+        <Text style={{ color: 'white', fontSize: 17 }}>
           <AppText i18nKey={'login'} />
         </Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.quenMatKhau}>
-        <Text style={{color: colors.blue}}>
+        <Text style={{ color: colors.blue }}>
           <AppText i18nKey={'forgotPassword'} />
         </Text>
       </TouchableOpacity>
@@ -144,10 +145,10 @@ const Login = () => {
           marginVertical: 20,
         }}>
         <TouchableOpacity
-          onPress={() =>
-            onFacebookButtonPress().then(() =>
-              console.log('Signed in with Facebook'),
-            )
+          onPress={() => { }
+            // onFacebookButtonPress().then(() =>
+            //   console.log('Signed in with Facebook'),
+            // )
           }
           style={styles.buttonAuthFace}>
           <Text style={styles.textAuth}>F</Text>

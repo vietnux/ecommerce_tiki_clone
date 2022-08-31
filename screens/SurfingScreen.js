@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 // Firestore from firebase
 import firestore from '@react-native-firebase/firestore';
 import colors from '../constants/Colors';
@@ -15,12 +15,12 @@ const Surfing = (props) => {
       .collection('posts')
       .onSnapshot((querySnapshot) => {
         const posts = [];
-        querySnapshot.forEach((documentSnapshot) => {
-          posts.push({
-            ...documentSnapshot.data(),
-            key: documentSnapshot.id,
-          });
-        });
+        // querySnapshot.forEach((documentSnapshot) => {
+        //   posts.push({
+        //     ...documentSnapshot.data(),
+        //     key: documentSnapshot.id,
+        //   });
+        // });
         setPostList(posts);
       });
     return () => subscriber();
@@ -35,7 +35,7 @@ const Surfing = (props) => {
   return (
     <ScrollView>
       <View style={styles.headerbar}>
-        <Text style={{color: colors.white, fontSize: 15, fontWeight: 'bold'}}>
+        <Text style={{ color: colors.white, fontSize: 15, fontWeight: 'bold' }}>
           <AppText i18nKey={'surfing'} />
         </Text>
       </View>
@@ -77,7 +77,7 @@ const Surfing = (props) => {
             return (
               <View style={styles.singlePost}>
                 <View style={styles.headPost}>
-                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <View>
                       <Image
                         style={{

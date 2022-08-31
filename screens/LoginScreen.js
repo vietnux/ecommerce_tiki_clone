@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Image,
@@ -11,13 +11,13 @@ import Login from '../components/Authentication/Login';
 import SignUp from '../components/Authentication/SignUp';
 import images from '../constants/Images';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import styles from './Styles/LoginScreenStyle';
-import {connect} from 'react-redux';
-const {width, height} = Dimensions.get('window');
+import { connect } from 'react-redux';
+const { width, height } = Dimensions.get('window');
 
-const LoginScreen = ({language}) => {
+const LoginScreen = ({ language }) => {
   const navigation = useNavigation();
   const [enLg, setEnLg] = useState('Đăng Nhập');
   const [enSi, setEnSi] = useState('Đăng Ký');
@@ -44,7 +44,7 @@ const LoginScreen = ({language}) => {
           style={styles.customClose}
           onPress={() => navigation.goBack()}>
           <Ionicons
-            style={{marginLeft: 10, marginTop: 5}}
+            style={{ marginLeft: 10, marginTop: 5 }}
             name="ios-close"
             size={35}
             color="white"
@@ -52,12 +52,12 @@ const LoginScreen = ({language}) => {
         </TouchableOpacity>
         <Image
           resizeMode="stretch"
-          style={{width, height: height / 5}}
-          source={{uri: images.Login}}
+          style={{ width, height: height / 5 }}
+          source={{ uri: images.Login }}
         />
       </View>
       <ScrollableTabView
-        tabBarUnderlineStyle={{backgroundColor: '#fdb827', height: 3}}
+        tabBarUnderlineStyle={{ backgroundColor: '#fdb827', height: 3 }}
         tabBarActiveTextColor="black"
         initialPage={0}>
         <Login tabLabel={enLg} />

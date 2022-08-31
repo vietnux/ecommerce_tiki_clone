@@ -24,12 +24,12 @@ firestore()
   .collection('products_detail')
   .onSnapshot((querySnapshot) => {
     const products_detail = [];
-    querySnapshot.forEach((documentSnapshot) => {
-      products_detail.push({
-        ...documentSnapshot.data(),
-        key: documentSnapshot.id,
-      });
-    });
+    // querySnapshot.forEach((documentSnapshot) => {
+    //   products_detail.push({
+    //     ...documentSnapshot.data(),
+    //     key: documentSnapshot.id,
+    //   });
+    // });
     productListDetailt = [...products_detail];
   });
 

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -26,18 +26,18 @@ const Categories = () => {
       .collection('products')
       .onSnapshot((querySnapshot) => {
         const product = [];
-        querySnapshot.forEach((documentSnapshot) => {
-          product.push({
-            ...documentSnapshot.data(),
-            key: documentSnapshot.id,
-          });
-        });
+        // querySnapshot.forEach((documentSnapshot) => {
+        //   product.push({
+        //     ...documentSnapshot.data(),
+        //     key: documentSnapshot.id,
+        //   });
+        // });
         setProductLists(product.sort((a, b) => a.id - b.id));
       });
     return () => subscriber();
   }, []);
 
-  const Item = ({url, title}) => (
+  const Item = ({ url, title }) => (
     <View style={styles.item}>
       <Image
         style={styles.image}
@@ -49,7 +49,7 @@ const Categories = () => {
     </View>
   );
 
-  const renderItem = ({item}) => (
+  const renderItem = ({ item }) => (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={() => setCategoryId(parseInt(item.id))}>

@@ -1,9 +1,9 @@
-import React, {useRef, useEffect} from 'react';
-import {View, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
-import {AddCart} from '../Redux/actions';
-import {connect} from 'react-redux';
-import BottomSheet from 'reanimated-bottom-sheet';
-import {useNavigation} from '@react-navigation/native';
+import React, { useRef, useEffect } from 'react';
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { AddCart } from '../Redux/actions';
+import { connect } from 'react-redux';
+import RBSheet from 'react-native-raw-bottom-sheet';
+import { useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from '../constants/Colors';
 import font from '../constants/Font';
@@ -15,7 +15,7 @@ import img from '../constants/Images';
 
 const ProductDetailt = (props) => {
   const navigation = useNavigation();
-  const {item} = props.route.params;
+  const { item } = props.route.params;
 
   const sheetRef = useRef(null);
   const renderContent = () => (
@@ -33,7 +33,7 @@ const ProductDetailt = (props) => {
             size={15}
             color={colors.success}
           />
-          <Text style={{color: colors.success, marginLeft: 5}}>
+          <Text style={{ color: colors.success, marginLeft: 5 }}>
             Sản phẩm đã được thêm vào giỏ hàng
           </Text>
         </View>
@@ -44,12 +44,12 @@ const ProductDetailt = (props) => {
 
       <View style={styles.popBody}>
         <Image
-          style={{width: 60, height: 80, borderRadius: 5}}
-          source={{uri: item.url}}
+          style={{ width: 60, height: 80, borderRadius: 5 }}
+          source={{ uri: item.url }}
         />
 
-        <View style={{marginLeft: 15}}>
-          <Text style={{fontSize: 17}} numberOfLines={2}>
+        <View style={{ marginLeft: 15 }}>
+          <Text style={{ fontSize: 17 }} numberOfLines={2}>
             {item.title}
           </Text>
           <Text>Cung cấp bởi Tiki Trading</Text>
@@ -65,7 +65,7 @@ const ProductDetailt = (props) => {
   );
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <View style={styles.iconList}>
         <View>
           <Ionicons
@@ -111,7 +111,7 @@ const ProductDetailt = (props) => {
       </View>
       <ScrollView>
         <View style={styles.containt}>
-          <View style={{justifyContent: 'center', flexDirection: 'column'}}>
+          <View style={{ justifyContent: 'center', flexDirection: 'column' }}>
             <View style={styles.watchList}>
               <Lightbox backgroundColor="#222831" navigator={props.navigator}>
                 <Image
@@ -123,7 +123,7 @@ const ProductDetailt = (props) => {
                 />
               </Lightbox>
               <View style={styles.title}>
-                <Text style={{fontSize: 17}} numberOfLines={2}>
+                <Text style={{ fontSize: 17 }} numberOfLines={2}>
                   {item.title}
                 </Text>
                 <View
@@ -135,11 +135,11 @@ const ProductDetailt = (props) => {
                   <Ionicons name="ios-star" size={15} color="#ffc120" />
                   <Ionicons name="ios-star" size={15} color="#ffc120" />
                   <Ionicons name="ios-star" size={15} color="#ffc120" />
-                  <Text style={{marginLeft: 3, color: colors.comment}}>
+                  <Text style={{ marginLeft: 3, color: colors.comment }}>
                     (Xem {item.comment} đánh giá)
                   </Text>
                 </View>
-                <Text style={{width: '70%', fontSize: font.price}}>
+                <Text style={{ width: '70%', fontSize: font.price }}>
                   {item.price}
                   <Text
                     style={{
@@ -151,16 +151,16 @@ const ProductDetailt = (props) => {
                   </Text>
                 </Text>
 
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Image
                     resizeMode="stretch"
-                    style={{width: 60, height: 30}}
+                    style={{ width: 60, height: 30 }}
                     source={{
                       uri:
                         'https://salt.tikicdn.com/ts/upload/7b/17/f7/4860983e93ea3c264ae0d932c58ec4f7.png',
                     }}
                   />
-                  <Text style={{marginLeft: 15}}>
+                  <Text style={{ marginLeft: 15 }}>
                     Hoàn tiên 15% tối đa 600k/tháng
                   </Text>
                 </View>
@@ -171,17 +171,17 @@ const ProductDetailt = (props) => {
 
         <View style={styles.locationInfomation}>
           <View style={styles.headInfoLocation}>
-            <Text style={{fontSize: 17, width: '90%'}} numberOfLines={1}>
+            <Text style={{ fontSize: 17, width: '90%' }} numberOfLines={1}>
               Giao đến Quận 12, P.Thạnh Xuân, Hồ Chí Minh, Việt Nam
             </Text>
             <Ionicons name="arrow-forward-outline" size={25} color="black" />
           </View>
-          <View style={{marginBottom: 15}}>
-            <Text style={{fontSize: 17}}>Nhà bán Vadata</Text>
+          <View style={{ marginBottom: 15 }}>
+            <Text style={{ fontSize: 17 }}>Nhà bán Vadata</Text>
             <View style={styles.shipProduct}>
               <View>
                 <Text style={styles.special}>GIAO TIÊU CHUẨN</Text>
-                <Text style={{color: 'green', fontWeight: 'bold'}}>
+                <Text style={{ color: 'green', fontWeight: 'bold' }}>
                   Thứ 7, ngày 12 tháng 12
                 </Text>
                 <Text>Vận chuyển: 35.000 đ</Text>
@@ -232,7 +232,7 @@ const ProductDetailt = (props) => {
           <Text style={styles.selectBuy}>Chọn Mua</Text>
         </TouchableOpacity>
       </View>
-      <BottomSheet
+      <RBSheet
         ref={sheetRef}
         initialSnap={1}
         snapPoints={[200, 0]}

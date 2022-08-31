@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -15,17 +15,17 @@ import WaitPayment from '../components/ManageOrder/WaitPayment';
 import Handling from '../components/ManageOrder/Handling';
 import Shipping from '../components/ManageOrder/Shipping';
 import Ordered from '../components/ManageOrder/Ordered';
-const {width} = Dimensions.get('window');
-const ManageOrder = ({navigation}) => {
+const { width } = Dimensions.get('window');
+const ManageOrder = ({ navigation }) => {
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <View style={styles.header}>
         <TouchableOpacity
           onPress={() => {
             navigation.goBack();
           }}>
           <Ionicons
-            style={{marginLeft: 5}}
+            style={{ marginLeft: 5 }}
             name="ios-close"
             size={32}
             color={colors.white}
@@ -36,7 +36,7 @@ const ManageOrder = ({navigation}) => {
       </View>
       <ScrollableTabView
         renderTabBar={() => <MaskTabBar showMask={true} maskMode="light" />}
-        tabBarUnderlineStyle={{backgroundColor: '#111d5e', height: 3}}
+        tabBarUnderlineStyle={{ backgroundColor: '#111d5e', height: 3 }}
         initialPage={0}>
         <AllOrder tabLabel="Tất cả đơn hàng" />
         <WaitPayment tabLabel="Chờ thành toán" />

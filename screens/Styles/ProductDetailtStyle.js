@@ -1,7 +1,7 @@
-import {StyleSheet, Dimensions} from 'react-native';
-import {color} from 'react-native-reanimated';
+import { StyleSheet, Dimensions } from 'react-native';
+// import {color} from 'react-native-reanimated';
 import colors from '../../constants/Colors';
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   containt: {

@@ -32,4 +32,6 @@ target 'clone_tiki' do
     react_native_post_install(installer)
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
+
+  pod 'RNI18n', :path => '../node_modules/react-native-i18n'
 end

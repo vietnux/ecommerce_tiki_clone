@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, FlatList} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {commonStyles} from '../constants/Styles';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, FlatList } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { commonStyles } from '../constants/Styles';
+import { useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import firestore from '@react-native-firebase/firestore';
 import colors from '../constants/Colors';
@@ -18,25 +18,25 @@ const SearchScreen = () => {
       .collection('products')
       .onSnapshot((querySnapshot) => {
         const products = [];
-        querySnapshot.forEach((documentSnapshot) => {
-          products.push({
-            ...documentSnapshot.data(),
-            key: documentSnapshot.id,
-          });
-        });
+        // querySnapshot.forEach((documentSnapshot) => {
+        //   products.push({
+        //     ...documentSnapshot.data(),
+        //     key: documentSnapshot.id,
+        //   });
+        // });
         setProductLists(products.sort((a, b) => a.id - b.id));
       });
     return () => subscriber();
   }, []);
 
-  const renderItem = ({item}) => (
+  const renderItem = ({ item }) => (
     <TouchableOpacity
       style={{
         flexDirection: 'row',
         alignItems: 'center',
         marginLeft: 10,
       }}
-      onPress={() => navigation.navigate('ProductDetailt', {item: item})}
+      onPress={() => navigation.navigate('ProductDetailt', { item: item })}
       activeOpacity={0.8}>
       <Ionicons name="ios-search" size={27} color="#3333" />
       <Text style={styles.renderItem}>{item.title}</Text>

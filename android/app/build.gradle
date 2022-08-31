@@ -1,4 +1,5 @@
 apply plugin: "com.android.application"
+apply plugin: 'com.google.gms.google-services'
 
 import com.android.build.OutputFile
 
@@ -284,6 +285,17 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    implementation 'com.google.firebase:firebase-analytics:21.0.0'
+
+    implementation("com.google.firebase:firebase-iid:18.0.0")
+    implementation("com.google.firebase:firebase-iid-interop:16.0.1")
+    implementation("com.google.firebase:firebase-common:17.0.0")
+    implementation("com.google.firebase:firebase-measurement-connector:17.0.1")
+    implementation("com.google.android.gms:play-services-stats:16.0.1")
+    implementation("com.google.firebase:firebase-messaging:18.0.0")
+
+    implementation project(':react-native-i18n')
 }
 
 if (isNewArchitectureEnabled()) {
